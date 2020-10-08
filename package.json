@@ -1,0 +1,44 @@
+{
+  "name": "obtrax",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "aws-amplify": "^1.1.24",
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
+    "recharts": "^1.5.0"
+  },
+  "scripts": {
+    "start": "REACT_APP_STAGE=dev react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "predeploy": "REACT_APP_STAGE=dev npm run build",
+    "deploy": "aws s3 sync build/ s3://test.obtrax.net",
+    "predeploy:prod": "REACT_APP_STAGE=prod npm run build",
+    "deploy:prod": "aws s3 sync build/ s3://obtrax.net",
+    "postdeploy:prod": "aws cloudfront create-invalidation --distribution-id E3JGIJ3G0JAMB8 --paths '/*'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/obtrax-fe"
+  },
+  "author": "",
+  "license": "ISC"
+}
